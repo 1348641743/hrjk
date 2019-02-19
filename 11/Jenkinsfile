@@ -1,0 +1,10 @@
+pipeline {
+  agent any
+  stages {
+    stage('') {
+      steps {
+        git 'https://dop.poc.qloudmart.com/plugins/git/demo2/u/baiheming/dev/platform_login.git'
+      }
+    }
+  }
+}
