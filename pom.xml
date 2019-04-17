@@ -53,11 +53,6 @@
         <scope>test</scope>
         <optional>true</optional>
     </dependency>
-    <dependency>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.1</version>
-    </dependency>
     </dependencies> 
     <build>
         <plugins>         
@@ -78,31 +73,31 @@
                 <skip>false</skip>
             </configuration>
         </plugin>
-        <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.1</version>
-            <configuration>
-                <skip>false</skip>
-            </configuration>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>prepare-agent</goal>
-                    </goals>
-                </execution>
-                <execution>
-                    <configuration>
-                        <outputDirectory>${basedir}/target/coverage-reports</outputDirectory>
-                    </configuration>
-                    <id>report</id>
-                    <phase>test</phase>
-                    <goals>
-                        <goal>report</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
+             <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.8</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                          <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
         </plugins>
         <finalName>mjw01</finalName>  <!--  这里是 项目名 -->
     </build>
