@@ -98,6 +98,7 @@
                         </goals>
                     </execution>
                 </executions>
+                <plugin>
         </plugins>
         <finalName>mjw01</finalName>  <!--  这里是 项目名 -->
     </build>
