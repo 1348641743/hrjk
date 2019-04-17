@@ -13,8 +13,7 @@
             <groupId>junit</groupId> 
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
-            <optional>true</optional>
+            <!-- <scope>test</scope>  -->
         </dependency>
 
         <!-- javaEE -->
@@ -41,58 +40,57 @@
             <version>1.2</version>
         </dependency>
         <!-- servlet end -->
-            <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.7.7</version>        
-    </dependency>
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>6.4</version>
-        <scope>test</scope>
-        <optional>true</optional>
-    </dependency>
     </dependencies> 
     <build>
-        <plugins>         
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.5</version>
-            <configuration>
-                <skipTests>false</skipTests>
-                <argLine>-Dfile.encoding=UTF-8</argLine>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-deploy-plugin</artifactId>
-            <version>1.0</version>
-            <configuration>
-                <skip>false</skip>
-            </configuration>
-        </plugin>
-             <plugin>
+        <plugins>
+         
+          
+<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <!--<dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.20</version>
+                    </dependency>
+                </dependencies>-->
+                 <configuration>
+								<useSystemClassLoader>false</useSystemClassLoader>
+	                  <includes>
+	
+	                     <include>**/*Test.java</include>
+	 
+	                  </includes>
+	
+	              </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>${project.build.sourceEncoding}</encoding> 
+                </configuration>
+            </plugin>       
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.8</version>
                 <executions>
                     <execution>
-                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
                             <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
-                </plugin>
+            </plugin>
+
         </plugins>
         <finalName>mjw01</finalName>  <!--  这里是 项目名 -->
     </build>
